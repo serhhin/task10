@@ -32,17 +32,18 @@ class Record:
             raise ValueError("Phone number already exists")
 
     def remove_phone(self, phone):
-        phone = Phone(phone)
-        if phone in self.phones:
-            self.phones.remove(phone)
-        else:
-            raise ValueError("Phone number not found")
+        phone_obj_searched = Phone(phone)
+        for phone_obj in self.phones:
+            if phone_obj.value == phone_obj_searched.value:
+                self.phones.remove(phone_obj)
+    
+        return None
 
     def find_phone(self, phone):
-        phone_obj = Phone(phone)
+        phone_obj_searched = Phone(phone)
         for phone_obj in self.phones:
-            if phone_obj.value == phone_obj.value:
-                return str(phone_obj)
+            if phone_obj.value == phone_obj_searched.value:
+                return phone_obj
     
         return None
 
